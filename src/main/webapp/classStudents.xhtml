@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:outputLabel value="Class #{studentsForClass.classToAddTo.name} students"/>
+    <ol>
+        <ui:repeat value="#{studentsForClass.classToAddTo.students}" var="student">
+            <li>
+                <h:link value="#{student.name}" outcome="studentClasses?studentId=#{student.id}"/>
+            </li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:selectOneMenu value="#{studentsForClass.studentId}">
+            <f:selectItems value="#{studentsUseCase.allStudents}" var="student" itemLabel="#{student.name} #{student.surname}" itemValue="#{student.id}"/>
+        </h:selectOneMenu>
+        <h:commandButton value="Add student"
+                         actionListener="#{studentsForClass.addStudentsToClass()}"
+                         action="#{'classStudents?faces-redirect=true&amp;classId='.concat(studentsForClass.classToAddTo.id)}">
+            <f:param name="classId" value="#{studentsForClass.classToAddTo.id}"/>
+        </h:commandButton>
+    </h:form>
+</f:view>
+</html>
