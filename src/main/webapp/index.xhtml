@@ -6,17 +6,49 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:outputLabel value="Hello, world"/>
-    <h:link outcome="students" value="students page"/>
-    <ol>
-        <ui:repeat value="#{classesUseCase.allClasses}" var="class">
-            <li><h:link value="#{class.name}" outcome="classStudents?classId=#{class.id}"/></li>
-        </ui:repeat>
-    </ol>
-    <h:form>
-        <h:inputText value="#{classesUseCase.classToCreate.name}" rendered="true"/>
-        <h:inputText value="#{classesUseCase.classToCreate.hoursPerWeek}" rendered="true"/>
-        <h:commandButton value="Add class" actionListener="#{classesUseCase.createClass()}" action="index?faces-redirect=true"/>
-    </h:form>
+    <h:head>
+    </h:head>
+    <h:body>
+        <h2>All classes</h2>
+        <h:link outcome="students" value="students page"/>
+        <br/>
+        <h:link value="teachers page" outcome="teachers"/>
+        <br/>
+        <h:dataTable value="#{classesUseCase.allClasses}" var="class" border="1" style="border-collapse: collapse;">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                #{class.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:link value="#{class.name}" outcome="classStudents?classId=#{class.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Hours Per Week</f:facet>
+                #{class.hoursPerWeek}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Teacher</f:facet>
+                <h:link value="#{class.teacher.name} #{class.teacher.surname}" outcome="teacherClasses?teacherId=#{class.teacher.id}"/>
+            </h:column>
+            <h:column>
+                <h:form>
+                    <h:commandButton value="Delete" actionListener="#{classesUseCase.deleteClass(class.id)}" action="index?faces-redirect=true"/>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+        <br/>
+        <h:form>
+            <h:outputLabel value="Class name:"/>
+            <br/>
+            <h:inputText value="#{classesUseCase.classToCreate.name}" rendered="true"/>
+            <br/>
+            <h:outputLabel value="Hours per week:"/>
+            <br/>
+            <h:inputText value="#{classesUseCase.classToCreate.hoursPerWeek}" rendered="true"/>
+            <br/>
+            <h:commandButton value="Add class" actionListener="#{classesUseCase.createClass()}" action="index?faces-redirect=true"/>
+        </h:form>
+    </h:body>
 </f:view>
 </html>

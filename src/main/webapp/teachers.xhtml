@@ -6,28 +6,28 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h2>All students</h2>
+    <h2>All teachers</h2>
     <h:link outcome="index" value="home page"/>
-    <h:dataTable value="#{studentsUseCase.allStudents}" var="student" border="1" style="border-collapse: collapse;">
+    <h:dataTable value="#{teachersUseCase.allTeachers}" var="teacher" border="1" style="border-collapse: collapse;">
         <h:column>
             <f:facet name="header">Id</f:facet>
-            #{student.id}
+            #{teacher.id}
         </h:column>
         <h:column>
             <f:facet name="header">Name</f:facet>
-            <h:link value="#{student.name} #{student.surname}" outcome="studentClasses?studentId=#{student.id}"/>
+            #{teacher.name} #{teacher.surname}
         </h:column>
     </h:dataTable>
     <h:form>
-        <h:outputLabel value="Students name:"/>
+        <h:outputLabel value="Teachers name:"/>
         <br/>
-        <h:inputText value="#{studentsUseCase.studentToCreate.name}" rendered="true" />
+        <h:inputText value="#{teachersUseCase.teacherToCreate.name}" rendered="true"/>
         <br/>
-        <h:outputLabel value="Students surname:"/>
+        <h:outputLabel value="Teachers surname:"/>
         <br/>
-        <h:inputText value="#{studentsUseCase.studentToCreate.surname}" rendered="true" />
+        <h:inputText value="#{teachersUseCase.teacherToCreate.surname}" rendered="true"/>
         <br/>
-        <h:commandButton value="Add student" actionListener="#{studentsUseCase.createStudent()}" action="students?faces-redirect=true"/>
+        <h:commandButton value="Add new teacher" actionListener="#{teachersUseCase.createTeacher()}" action="teachers?faces-redirect=true"/>
     </h:form>
 </f:view>
 </html>

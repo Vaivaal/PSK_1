@@ -1,9 +1,8 @@
 package com.example.psk_1.usecases;
 
-import com.example.psk_1.entities.Class;
-import com.example.psk_1.entities.Student;
-import com.example.psk_1.persistence.ClassesDAO;
-import com.example.psk_1.persistence.StudentsDAO;
+import com.example.psk_1.mybatis.dao.TeacherMapper;
+import com.example.psk_1.entities.Teacher;
+import com.example.psk_1.persistence.TeacherDAO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,18 +13,18 @@ import javax.inject.Inject;
 import java.util.Map;
 
 @Model
-public class ClassesForStudent {
+public class ClassesForTeacher {
     @Inject
-    private StudentsDAO studentsDAO;
+    private TeacherDAO teacherDAO;
 
-    @Getter
-    @Setter
-    private Student student;
+    @Getter @Setter
+    private Teacher teacher;
 
     @PostConstruct
     public void init(){
         Map<String, String> requestParameters = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        Long studentId = Long.parseLong(requestParameters.get("studentId"));
-        student = studentsDAO.getOne(studentId);
+        Long teacherId = Long.parseLong(requestParameters.get("teacherId"));
+        teacher = teacherDAO.getOne(teacherId);
     }
+
 }

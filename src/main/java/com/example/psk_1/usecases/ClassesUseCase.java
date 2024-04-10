@@ -31,4 +31,9 @@ public class ClassesUseCase {
     }
 
     private void findAllClasses(){allClasses = classesDAO.getAll();}
+
+    @Transactional
+    public void deleteClass(Long classToDeleteId){
+        classesDAO.delete(classToDeleteId);
+    }
 }

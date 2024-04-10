@@ -1,19 +1,16 @@
 package com.example.psk_1.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import lombok.Getter;
+
+import javax.persistence.*;
 import java.util.List;
 
+@Getter
 @Entity
 public class Teacher {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    public Long getId() {
-        return id;
-    }
 
     public void setId(Long id) {
         this.id = id;
@@ -22,10 +19,6 @@ public class Teacher {
     @Basic
     private String name;
 
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -33,20 +26,12 @@ public class Teacher {
     @Basic
     private String surname;
 
-    public String getSurname() {
-        return surname;
-    }
-
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
-    @OneToMany(mappedBy = "teacher")
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.REMOVE)
     private List<Class> classes;
-
-    public List<Class> getClasses() {
-        return classes;
-    }
 
     public void setClasses(List<Class> classes) {
         this.classes = classes;

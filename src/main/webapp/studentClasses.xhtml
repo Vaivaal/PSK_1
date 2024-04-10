@@ -6,11 +6,20 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:outputLabel value="Hello, world"/>
-    <ui:repeat value="#{classesForStudent.student.attendedClasses}" var="classes">
-        <li>
-            #{classes.name}
-        </li>
-    </ui:repeat>
+    <h2>Student's #{classesForStudent.student.name} classes</h2>
+    <h:dataTable value="#{classesForStudent.student.attendedClasses}" var="class" border="1" style="border-collapse: collapse;">
+        <h:column>
+            <f:facet name="header">Id</f:facet>
+            #{class.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Name</f:facet>
+            <h:link value="#{class.name}" outcome="classStudents?classId=#{class.id}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">Hours Per Week</f:facet>
+            #{class.hoursPerWeek}
+        </h:column>
+    </h:dataTable>
 </f:view>
 </html>

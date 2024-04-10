@@ -33,14 +33,14 @@ public class Class {
         this.hoursPerWeek = hoursPerWeek;
     }
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private Teacher teacher;
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
 
-    @ManyToMany(mappedBy = "attendedClasses")
+    @ManyToMany(mappedBy = "attendedClasses", cascade = CascadeType.REMOVE)
     private List<Student> students;
 
     public void setStudents(List<Student> students) {

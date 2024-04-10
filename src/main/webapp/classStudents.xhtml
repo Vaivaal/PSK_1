@@ -6,17 +6,24 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:outputLabel value="Class #{studentsForClass.classToAddTo.name} students"/>
-    <ol>
-        <ui:repeat value="#{studentsForClass.classToAddTo.students}" var="student">
-            <li>
-                <h:link value="#{student.name}" outcome="studentClasses?studentId=#{student.id}"/>
-            </li>
-        </ui:repeat>
-    </ol>
+    <h2>Class #{studentsForClass.classToAddTo.name}</h2>
+    <h:outputLabel value = "Teacher #{studentsForClass.classToAddTo.teacher.name}"/>
+    <br/>
+    <h:outputLabel value="Students:"/>
+    <h:dataTable value="#{studentsForClass.classToAddTo.students}" var="student" border="1" style="border-collapse: collapse;">
+        <h:column>
+            <f:facet name="header">Id</f:facet>
+            #{student.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Name</f:facet>
+            <h:link value="#{student.name} #{student.surname}" outcome="studentClasses?studentId=#{student.id}"/>
+        </h:column>
+    </h:dataTable>
+    <br/>
     <h:form>
         <h:selectOneMenu value="#{studentsForClass.studentId}">
-            <f:selectItems value="#{studentsUseCase.allStudents}" var="student" itemLabel="#{student.name} #{student.surname}" itemValue="#{student.id}"/>
+            <f:selectItems value="#{studentsForClass.notSelectedStudents}" var="student" itemLabel="#{student.name} #{student.surname}" itemValue="#{student.id}"/>
         </h:selectOneMenu>
         <h:commandButton value="Add student"
                          actionListener="#{studentsForClass.addStudentsToClass()}"
@@ -24,5 +31,18 @@
             <f:param name="classId" value="#{studentsForClass.classToAddTo.id}"/>
         </h:commandButton>
     </h:form>
+
+    <h:form>
+        <h:selectOneMenu value="#{teachersForClass.teacherId}">
+            <f:selectItems value="#{teachersForClass.notSelectedTeachers}" var="teacher" itemLabel="#{teacher.name} #{teacher.surname}" itemValue="#{teacher.id}"/>
+        </h:selectOneMenu>
+        <h:commandButton value="Add teacher"
+                         actionListener="#{teachersForClass.addTeacherToClass()}"
+                         action="#{'classStudents?faces-redirect=true&amp;classId='.concat(studentsForClass.classToAddTo.id)}">
+            <f:param name="classId" value="#{teachersForClass.classToAddTo.id}"/>
+        </h:commandButton>
+    </h:form>
+    <br/>
+    <h:link outcome="index" value="home page"/>
 </f:view>
 </html>
