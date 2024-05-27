@@ -5,6 +5,7 @@ import com.example.psk_1.entities.Student;
 import com.example.psk_1.mybatis.dao.TeacherMapper;
 import com.example.psk_1.entities.Teacher;
 import com.example.psk_1.persistence.ClassesDAO;
+import com.example.psk_1.persistence.IClassesDAO;
 import com.example.psk_1.persistence.StudentsDAO;
 import com.example.psk_1.persistence.TeacherDAO;
 import lombok.Getter;
@@ -26,7 +27,7 @@ public class teachersForClass {
     @Inject
     private TeacherDAO teacherDAO;
     @Inject
-    private ClassesDAO classesDAO;
+    private IClassesDAO classesDAO;
 
     @Getter
     @Setter

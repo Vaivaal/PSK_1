@@ -3,6 +3,7 @@ package com.example.psk_1.usecases;
 import com.example.psk_1.entities.Class;
 import com.example.psk_1.entities.Student;
 import com.example.psk_1.persistence.ClassesDAO;
+import com.example.psk_1.persistence.IStudentsDAO;
 import com.example.psk_1.persistence.StudentsDAO;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +17,7 @@ import java.util.Map;
 @Model
 public class ClassesForStudent {
     @Inject
-    private StudentsDAO studentsDAO;
+    private IStudentsDAO studentsDAO;
 
     @Getter
     @Setter

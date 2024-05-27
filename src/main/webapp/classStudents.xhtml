@@ -7,6 +7,17 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <h2>Class #{studentsForClass.classToAddTo.name}</h2>
+    <h:form>
+        <h:outputLabel value="New class name:"/>
+        <br/>
+        <h:inputText value="#{studentsForClass.classToAddTo.name}" rendered="true"/>
+        <h:commandButton value="Update class name"
+                         actionListener="#{studentsForClass.updateClassName}">
+            <f:param name="classId" value="#{studentsForClass.classToAddTo.id}"/>
+        </h:commandButton>
+        <h:outputText value="#{studentsForClass.errorMessage}" style="color:red;" rendered="#{not empty studentsForClass.errorMessage}"/>
+    </h:form>
+
     <h:outputLabel value = "Teacher #{studentsForClass.classToAddTo.teacher.name}"/>
     <br/>
     <h:outputLabel value="Students:"/>
@@ -25,7 +36,7 @@
         <h:selectOneMenu value="#{studentsForClass.studentId}">
             <f:selectItems value="#{studentsForClass.notSelectedStudents}" var="student" itemLabel="#{student.name} #{student.surname}" itemValue="#{student.id}"/>
         </h:selectOneMenu>
-        <h:commandButton value="Add student"
+        <h:commandButton value="Add student" disabled="#{empty studentsForClass.notSelectedStudents}"
                          actionListener="#{studentsForClass.addStudentsToClass()}"
                          action="#{'classStudents?faces-redirect=true&amp;classId='.concat(studentsForClass.classToAddTo.id)}">
             <f:param name="classId" value="#{studentsForClass.classToAddTo.id}"/>

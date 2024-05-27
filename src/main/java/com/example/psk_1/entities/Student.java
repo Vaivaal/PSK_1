@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -12,7 +13,11 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "Student.getAll", query = "SELECT s FROM Student as s")
 })
-public class Student {
+public class Student implements Serializable {
+
+    @Version
+    private Long version;
+
     @Id
     @GeneratedValue
     private Long id;

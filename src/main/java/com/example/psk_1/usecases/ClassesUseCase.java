@@ -2,6 +2,7 @@ package com.example.psk_1.usecases;
 
 import com.example.psk_1.entities.Class;
 import com.example.psk_1.persistence.ClassesDAO;
+import com.example.psk_1.persistence.IClassesDAO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @Model
 public class ClassesUseCase {
     @Inject
-    ClassesDAO classesDAO;
+    IClassesDAO classesDAO;
 
     @Getter
     @Setter

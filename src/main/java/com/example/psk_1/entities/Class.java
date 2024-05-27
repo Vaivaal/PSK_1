@@ -1,16 +1,22 @@
 package com.example.psk_1.entities;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
-@Getter
+@Getter @Setter
 @Entity
 @NamedQueries({
         @NamedQuery(name = "Class.getAll", query = "SELECT c FROM Class as c")
 })
-public class Class {
+public class Class implements Serializable {
+
+    @Version
+    private Long version;
+
     @Id
     @GeneratedValue
     private Long id;
