@@ -70,14 +70,10 @@ public class StudentsForClass implements Serializable {
     public void updateClassName(){
         try{
             classesDAO.update(classToAddTo);
-            //TimeUnit.SECONDS.sleep(5);
         }catch (OptimisticLockException e){
-            System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            //System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             errorMessage = "Optimistic lock exception: " + e;
         }
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
     }
 
 }

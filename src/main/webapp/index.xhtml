@@ -49,6 +49,10 @@
             <br/>
             <h:commandButton value="Add class" actionListener="#{classesUseCase.createClass()}" action="index?faces-redirect=true"/>
         </h:form>
+        <h:form>
+            <h:commandButton value="Generate Hours per week" actionListener="#{generateRandomHours.generateNewHoursPerWeek}" action="index?faces-redirect=true"/>
+            <h:outputLabel value= "#{generateRandomHours.hourGenerationStatus}"/>
+        </h:form>
     </h:body>
 </f:view>
 </html>

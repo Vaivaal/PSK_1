@@ -1,7 +1,6 @@
 package com.example.psk_1.persistence;
 
 import com.example.psk_1.entities.Class;
-import com.example.psk_1.entities.Student;
 import com.example.psk_1.entities.Teacher;
 
 import javax.enterprise.context.ApplicationScoped;

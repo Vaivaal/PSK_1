@@ -14,5 +14,5 @@ public class ClassDto {
 
     private Integer hoursPerWeek;
 
-    private String TeacherName;
+    //private String TeacherName;
 }

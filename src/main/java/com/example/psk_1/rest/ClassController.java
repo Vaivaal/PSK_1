@@ -35,8 +35,8 @@ public class ClassController {
         ClassDto classDto = new ClassDto();
         classDto.setName(_class.getName());
         classDto.setHoursPerWeek(_class.getHoursPerWeek());
-        if (_class.getTeacher() != null)
-            classDto.setTeacherName(_class.getTeacher().getName());
+//        if (_class.getTeacher() != null)
+//            classDto.setTeacherName(_class.getTeacher().getName());
 
         return Response.ok(classDto).build();
     }
